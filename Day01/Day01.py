@@ -1,21 +1,25 @@
 def find_elf(filename):
     calories = 0
-    bestElf = 0
-    print('Openen van file: ' + filename);
+    best_elf = 0
+    top_3 = list()
+
+    print('Openen van file: ' + filename)
     with open(filename) as f:
         for line in f:
             l = line.strip()
-            checkDigitl = l.isdigit()
-            if checkDigitl:
+            check_digitl = l.isdigit()
+            if check_digitl:
                 calories += int(l)
             else:
-                if calories > bestElf:
-                    bestElf = calories
-
-                print('Current Calories: ' + str(calories))
-                print('Current bestElf: ' + str(bestElf))
+                top_3.append(calories)
+                if calories > best_elf:
+                    best_elf = calories
                 calories = 0
 
-    print('Beste Elf is: ' + str(bestElf))
+
+    print('Beste Elf is: ' + str(best_elf))
+    top_3.sort(reverse=True)
+    print('Total calories of top 3 elves: ' + str(sum(top_3[:3])))
+
 
 find_elf('input.txt')
